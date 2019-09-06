@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">  
+    <!-- include a-frame -->
+    <script src="https://mnutsch.github.io/arjs_workshop/start/vendor/aframe/build/aframe.min.js"></script>
+
+    <!-- include ar.js for aframe -->
+    <script src='js/aframe-ar.js'></script>
+
+    <script>		
+
+      // remove the video tag
+      var removeVideos = function() {
+        var element = document.getElementsByTagName("video"), index;
+        for (index = element.length - 1; index >= 0; index--) {
+            element[index].style.display = "none";
+        }
+      }
+
+      //remove the Aframe VR button
+      var removeVRButton = function(){
+        var element = document.getElementsByClassName("a-enter-vr-button"), index;
+        for (index = element.length - 1; index >= 0; index--) {
+            element[index].style.display = "none";
+        }
+      }
+
+      // wait to remove videos
+      setTimeout(function(){
+        removeVideos(); 
+        removeVRButton();       
+      }, 2000); // wait 2 seconds
+    </script>
+
+  </head>
+
+  <!-- start the body of your page -->
+  <body style='margin : 0px; overflow: hidden; background-color: transparent;'>  
+
+    <!-- Define your 3d scene and enabled ar.js -->
+    <a-scene debug embedded arjs='trackingMethod: best; debugUIEnabled: false;'>
+<a-assets>
+    <img id="sid" src="images/1s.png">
+</a-assets>
+      <!-- Create a anchor to attach your augmented reality -->
+      <a-marker type="pattern" url="https://raw.githubusercontent.com/debayanj/miniature-meme/master/pattern-Untitled-2.patt">
+
+        <!-- Basic Box -->             
+        <!-- see: https://aframe.io/docs/0.8.0 -->
+        <a-box id="myBox" rotation="-90 0 0" position='-2 -3 0' height="12" width="12" material='src:#sid;'></a-box>
+        
+      </a-marker>
+
+      <!-- Define a static camera -->
+      <a-camera-static></a-camera-static>
+
+    </a-scene>
+
+  </body>
+
+</html>
